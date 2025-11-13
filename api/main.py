@@ -6,12 +6,11 @@ import configparser
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from typing import Optional
-from dotenv import load_dotenv
 
-load_dotenv()
+# Não usar dotenv no Azure - usar variáveis de ambiente diretas
 
 config = configparser.ConfigParser()
-config.read('prompts.ini', encoding='utf-8')
+config.read('api/prompts.ini', encoding='utf-8')
 PROMPT_TEMPLATE = config['GeminiPrompts']['chamado_ti']
 
 try:
@@ -36,6 +35,21 @@ app = FastAPI(
     description="Uma API para gerenciar chamados de TI, enriquecidos com análise do Gemini.",
     version="1.0"
 )
+
+@app.get("/")
+def root():
+    """
+    Endpoint raiz para verificar se a API está funcionando.
+    """
+    return {
+        "message": "API SmartCall está funcionando!",
+        "status": "online",
+        "endpoints": {
+            "docs": "/docs",
+            "redoc": "/redoc",
+            "analisar": "/analisar (POST)"
+        }
+    }
 
 def analisar_chamado_com_gemini(descricao: str) -> Optional[AnaliseIA]:
     """

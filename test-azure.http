@@ -1,0 +1,47 @@
+### Teste da API na Azure
+# URL do seu App Service na Azure
+
+@azureUrl = https://smartcall-gemini-api-bxdhg9embtc3b3f3.brazilsouth-01.azurewebsites.net
+
+### 1. Testar se a API está funcionando (GET raiz)
+GET {{azureUrl}}
+
+### 2. Testar análise de chamado - Erro simples
+POST {{azureUrl}}/analisar
+Content-Type: application/json
+
+{
+    "descricao": "Meu computador não liga. Quando aperto o botão de power, nada acontece, a tela fica preta."
+}
+
+### 3. Testar análise de chamado - Problema de rede
+POST {{azureUrl}}/analisar
+Content-Type: application/json
+
+{
+    "descricao": "Não consigo acessar a internet. O Wi-Fi está conectado mas nenhum site abre no navegador."
+}
+
+### 4. Testar análise de chamado - Problema de software
+POST {{azureUrl}}/analisar
+Content-Type: application/json
+
+{
+    "descricao": "O Excel está travando toda vez que tento abrir uma planilha grande. A mensagem diz 'não respondendo'."
+}
+
+### 5. Testar análise de chamado - Senha bloqueada
+POST {{azureUrl}}/analisar
+Content-Type: application/json
+
+{
+    "descricao": "Esqueci minha senha do sistema e agora está bloqueada após 3 tentativas erradas."
+}
+
+### 6. Testar validação - Descrição muito curta (deve retornar erro 422)
+POST {{azureUrl}}/analisar
+Content-Type: application/json
+
+{
+    "descricao": "Erro"
+}

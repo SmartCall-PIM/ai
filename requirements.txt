@@ -1,7 +1,4 @@
-# Requisitos do projeto
-# Adicione versões se desejar (ex: fastapi==0.100.0)
-fastapi
-uvicorn[standard]
-google-generative-ai
-python-dotenv
-pydantic
+fastapi==0.115.4
+uvicorn==0.32.0
+google-generativeai==0.8.3
+pydantic==2.9.2
