@@ -10,7 +10,8 @@ from typing import Optional
 # Não usar dotenv no Azure - usar variáveis de ambiente diretas
 
 config = configparser.ConfigParser()
-config.read('api/prompts.ini', encoding='utf-8')
+config_path = os.path.join(os.path.dirname(__file__), 'prompts.ini')
+config.read(config_path, encoding='utf-8')
 PROMPT_TEMPLATE = config['GeminiPrompts']['chamado_ti']
 
 try:

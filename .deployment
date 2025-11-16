@@ -1,2 +1,2 @@
-[config]
-SCM_DO_BUILD_DURING_DEPLOYMENT=1
+python3 -m pip install --upgrade pip
+pip install -r requirements.txt
