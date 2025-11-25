@@ -16,7 +16,7 @@ PROMPT_TEMPLATE = config['GeminiPrompts']['chamado_ti']
 
 try:
     genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
-    model = genai.GenerativeModel('gemini-2.5-flash')
+    model = genai.GenerativeModel('gemini-2.0-flash-lite')
     print("API do Gemini configurada com sucesso!")
 except Exception as e:
     print(f"Erro ao configurar a API do Gemini: {e}")
